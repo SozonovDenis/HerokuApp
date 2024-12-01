@@ -42,18 +42,13 @@ public class DropdownTest {
         //Проверяем что выбрано значение-плейсхолдер
         Assert.assertTrue(v0.isSelected());
 
-        //Выбираем первое значение, проверяем что оно0 выбрано
+        //Выбираем первое значение, проверяем что оно выбрано
         v1.click();
         Assert.assertTrue(v1.isSelected());
 
         //Выбираем второе значение, проверяем что оно выбрано
         v2.click();
         Assert.assertTrue(v2.isSelected());
-
-
-
-
-
 
     }
 
