@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.time.Duration;
 
-
 public class DropdownTest {
     WebDriver driver;
 
