@@ -3,19 +3,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
+import org.testng.asserts.SoftAssert;
 import java.time.Duration;
-import java.util.List;
 
 
 public class DropdownTest {
     WebDriver driver;
-
 
     @BeforeMethod
     public void setup() {
@@ -26,36 +22,37 @@ public class DropdownTest {
     }
 
     @Test
-    public void CheckAddRemoveElements() {
+    public void Dropdown() {
         driver.get("https://the-internet.herokuapp.com/dropdown");
+
+        SoftAssert softAssert = new SoftAssert();
 
         //Находим все значения выпадашки в т.ч. значение-плейсхолдер
         WebElement v0 = driver.findElement(By.xpath("//option[1]"));
         WebElement v1 = driver.findElement(By.xpath("//option[@value='1']"));
-        WebElement v2 =  driver.findElement(By.xpath("//option[@value='2']"));
+        WebElement v2 = driver.findElement(By.xpath("//option[@value='2']"));
 
         //Проверяем отображение всех значений
-        Assert.assertTrue(v0.isDisplayed());
-        Assert.assertTrue(v1.isDisplayed());
-        Assert.assertTrue(v2.isDisplayed());
+        softAssert.assertTrue(v0.isDisplayed(), "Placeholder value is not displayed");
+        softAssert.assertTrue(v1.isDisplayed(), "1st value is not displayed");
+        softAssert.assertTrue(v2.isDisplayed(), "2nd value is not displayed");
 
         //Проверяем что выбрано значение-плейсхолдер
-        Assert.assertTrue(v0.isSelected());
+        softAssert.assertTrue(v0.isSelected(), "Placeholder value is not selected");
 
         //Выбираем первое значение, проверяем что оно выбрано
         v1.click();
-        Assert.assertTrue(v1.isSelected());
+        softAssert.assertTrue(v1.isSelected(), "1st value is not selected");
 
         //Выбираем второе значение, проверяем что оно выбрано
         v2.click();
-        Assert.assertTrue(v2.isSelected());
+        softAssert.assertTrue(v2.isSelected(), "2nd value is not selected");
 
+        softAssert.assertAll();
     }
 
     @AfterTest
     public void tearDown() {
-      //  driver.quit();
+        driver.quit();
     }
-
-
 }

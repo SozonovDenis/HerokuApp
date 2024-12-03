@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -15,9 +14,8 @@ public class AddRemoveElementsTest {
 
     WebDriver driver;
 
-
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -38,11 +36,11 @@ public class AddRemoveElementsTest {
         //Подсчет и сравнение кол-ва элементов с ожидаемым
         List<WebElement> elements = driver.findElements(By.className("added-manually"));
         int expectedCount = 1; // Ожидаемое количество элементов
-        Assert.assertTrue(elements.size() == expectedCount);
+        Assert.assertEquals(elements.size(), expectedCount);
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }
